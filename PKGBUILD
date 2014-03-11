@@ -12,9 +12,17 @@ url="http://www.gnu.org/software/coreutils"
 groups=('base')
 depends=('glibc' 'pam' 'acl' 'gmp' 'libcap' 'openssl')
 install=${pkgname}.install
-source=(ftp://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver.tar.xz{,.sig})
+source=(ftp://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver.tar.xz{,.sig}
+        sysinfo.patch
+       )
 md5sums=('8fb0ae2267aa6e728958adc38f8163a2'
+         'SKIP'
          'SKIP')
+
+prepare() {
+  cd ${srcdir}/${pkgname}-${pkgver}
+  patch -p1 -i "$srcdir/sysinfo.patch"
+}
 
 build() {
   cd ${srcdir}/${pkgname}-${pkgver}
