@@ -1,0 +1,1 @@
+A patch of ArchLinux's coreutils to make it use sysinfo to determine processor information.
